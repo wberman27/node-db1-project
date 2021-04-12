@@ -1,3 +1,5 @@
+const Accounts = require('./accounts-model')
+
 exports.checkAccountPayload = (req, res, next) => {
   // DO YOUR MAGIC
 }

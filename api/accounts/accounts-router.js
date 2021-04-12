@@ -1,4 +1,6 @@
 const router = require('express').Router()
+const mw = require('./accounts-middleware')
+const Accounts = require('./accounts-model')
 
 router.get('/', (req, res, next) => {
   // DO YOUR MAGIC
