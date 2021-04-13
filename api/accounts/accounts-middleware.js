@@ -1,3 +1,4 @@
+const { render } = require('../server')
 const Accounts = require('./accounts-model')
 
 exports.checkAccountPayload = (req, res, next) => {
@@ -36,7 +37,7 @@ exports.checkAccountNameUnique = async (req, res, next) => {
       namesArray.push(a.name.trim()) 
       return namesArray;
     })
-    if(namesArray.contains(req.body.name.trim())){
+    if(namesArray.includes(req.body.name.trim())){
       res.status(400).json({ message: "that name is taken" })
     }else{
       next()
