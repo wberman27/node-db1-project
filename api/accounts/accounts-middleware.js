@@ -28,8 +28,22 @@ exports.checkAccountPayload = (req, res, next) => {
   }
 }
 
-exports.checkAccountNameUnique = (req, res, next) => {
-  // DO YOUR MAGIC
+exports.checkAccountNameUnique = async (req, res, next) => {
+  const accounts = await Accounts.getAll();
+  try{
+    const namesArray = []
+    accounts.map(a =>{
+      namesArray.push(a.name.trim()) 
+      return namesArray;
+    })
+    if(namesArray.contains(req.body.name.trim())){
+      res.status(400).json({ message: "that name is taken" })
+    }else{
+      next()
+    }
+  }catch(err){
+    next(err)
+  }
 }
 
 exports.checkAccountId = async (req, res, next) => {
