@@ -2,8 +2,13 @@ const router = require('express').Router()
 const mw = require('./accounts-middleware')
 const Accounts = require('./accounts-model')
 
-router.get('/', (req, res, next) => {
-  // DO YOUR MAGIC
+router.get('/', async (req, res, next) => {
+  try{
+    const data = await Accounts.getAll()
+    res.status(200).json(data)
+  }catch(err){
+    next(err)
+  }
 })
 
 router.get('/:id', (req, res, next) => {

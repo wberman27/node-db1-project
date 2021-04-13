@@ -29,8 +29,8 @@ exports.checkAccountPayload = (req, res, next) => {
 }
 
 exports.checkAccountNameUnique = async (req, res, next) => {
-  const accounts = await Accounts.getAll();
   try{
+    const accounts = await Accounts.getAll();
     const namesArray = []
     accounts.map(a =>{
       namesArray.push(a.name.trim()) 
